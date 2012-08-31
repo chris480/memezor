@@ -1,0 +1,5 @@
+h1{font-family: sans-serif;}
+#container{width: 500px; margin:auto;}
+#memediv{width: 80px; float: left;}
+#memepreview{width: 300px; float: right;display:inline;}
+.meme{width:50px;}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Meme Generator</title>
+	<meta name="description" content="">
+	<meta name="ChrisN" content="Meme Generator">
+	<link rel="stylesheet" href="meme.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script>
+	var memeid = "meme.jpg";
+	//Change image on hover
+	//Sets memeid to current image
+	$(function() {
+		 $('.meme').hover(function(){
+			memeid = this.attributes.item(1).value;
+			$("#scribbled").attr('src',this.src);
+		});
+	});
+	//Sends input text to php procressor
+	//Changes image to generated meme
+	function print(){
+		var text1 = $("#text1").val(); //Top line
+		var text2 = $("#text2").val(); //Bottom Line
+		//Default post URL + text1 + text2 +image
+		//CHANGE TO YOUR OWN
+		var url = "http://students.washington.edu/chris480/practice/imagetext.php?quote=" + encodeURIComponent(text1) + "&quote2=" + encodeURIComponent(text2) + "&meme=" + memeid ;
+		$("#scribbled").attr('src',url);
+	}	
+	
+	</script>
+</head>
+<body>
+
+<div id="container">
+<header>
+<h1>Welcome to the Meme Generator!</h1>
+</header>
+		<div id="memediv"><br/>
+			<img class="meme" src="meme.jpg" title="philsoraptor">
+			<img class="meme" src="meme2.jpg" title="Success Kid">
+			<img class="meme" src="meme3.jpg" title="Willy Wonka">
+			<img class="meme" src="meme4.jpg" title="Y U NO">
+			<img class="meme" src="meme5.jpg" title="Rage">
+			<img class="meme" src="meme6.png" title="Rage">
+			<img class="meme" src="meme7.jpg" title="Rage">
+			<img class="meme" src="meme8.jpg" title="LOTR">
+		</div>
+		<div id="memepreview"><br/>
+				<form action="imagetext.php" method="post">
+					Top:<input type="text" id="text1" name="quote" value="" placeholder="Enter Your Text Here" size="40"><br>
+					Bottom:<input type="text" id="text2" name="quote2" value="" placeholder="Enter Your Text Here"size="40"><br>
+				</form>
+				<input type="submit" value="Preview Picture" onclick="print();"><p></p>
+			<p><img id="scribbled" src="meme.jpg"><br>
+			</p>
+		</div>
+</div>
+</body>
